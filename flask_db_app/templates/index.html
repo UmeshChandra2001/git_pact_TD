@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flask MySQL App</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 50px; background-color: #f4f4f9; }
+        form { background: white; padding: 20px; border-radius: 8px; width: 300px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        input { display: block; width: 100%; margin-bottom: 10px; padding: 8px; box-sizing: border-box; }
+        button { background: #007BFF; color: white; border: none; padding: 10px; width: 100%; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        table { margin-top: 20px; width: 100%; border-collapse: collapse; background: white; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        th { background: #f2f2f2; }
+    </style>
+</head>
+<body>
+
+    <h2>Flask & MySQL Integration</h2>
+
+    <!-- Form to add users -->
+    <form method="POST">
+        <label>Name:</label>
+        <input type="text" name="name" required>
+        
+        <label>Email:</label>
+        <input type="email" name="email" required>
+        
+        <button type="submit">Add User</button>
+    </form>
+
+    <!-- Table to display users from DB -->
+    <h3>Registered Users</h3>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+        </tr>
+        {% for user in users %}
+        <tr>
+            <td>{{ user[0] }}</td>
+            <td>{{ user[1] }}</td>
+            <td>{{ user[2] }}</td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="3">No users found in the database.</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</body>
+</html>
